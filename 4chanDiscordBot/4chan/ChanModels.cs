@@ -46,6 +46,7 @@ namespace ChanDiscordBot.Chan
 		public DateTime TimeStamp => DateTimeOffset.FromUnixTimeSeconds(time).UtcDateTime;
 		public int tn_h; //Thumbnail height 1-250
 		public int tn_w; //Thumbnail width 1-250
+		public int unique_ips; //No documentation ¯\_(ツ)_/¯ Should be self explanatory
 		public int w; //Image width 1-10000
 	}
 
