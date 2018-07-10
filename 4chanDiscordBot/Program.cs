@@ -14,6 +14,7 @@ namespace ChanDiscordBot
 	{
 		public static DiscordSocketClient Client { get; private set; }
 		public static BotConfig BotConfig { get; private set; }
+		public static ChanDataStore ChanData { get; private set; }
 		private static BotCommandHandler cHandler;
 		private static BotCommandProcessor cProcessor;
 		private static ChanUpdateThread ChanThread;
@@ -34,6 +35,9 @@ namespace ChanDiscordBot
 				BotConfig.SaveCredConfig();
 
 				#region 4chan Setup
+				ChanData = new ChanDataStore();
+				ChanData.Load();
+				ChanData.Save();
 				ChanThread = new ChanUpdateThread();
 				ChanThread.Start();
 				#endregion

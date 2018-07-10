@@ -20,7 +20,7 @@ namespace ChanDiscordBot.Config
 			{
 				try
 				{
-					BotInfo = JsonConvert.DeserializeObject<BotConfigModel>(File.ReadAllText("Data/Config.json"));
+					BotInfo = HelperFunctions.ReadJsonFile<BotConfigModel>(FilePath);
 					if (BotInfo == null)
 					{
 						result.Success = false;
@@ -42,11 +42,8 @@ namespace ChanDiscordBot.Config
 			{
 				try
 				{
-					if (!Directory.Exists(Path.GetDirectoryName(FilePath)))
-						Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
-					using (File.Create(FilePath)) { }
 					BotInfo = new BotConfigModel();
-					File.WriteAllText(FilePath, JsonConvert.SerializeObject(BotInfo, Formatting.Indented));
+					HelperFunctions.WriteJsonFile(FilePath, BotInfo);
 				}
 				catch (Exception ex)
 				{
@@ -65,7 +62,7 @@ namespace ChanDiscordBot.Config
 			var result = new BaseResult();
 			try
 			{
-				File.WriteAllText(FilePath, JsonConvert.SerializeObject(BotInfo, Formatting.Indented));
+				HelperFunctions.WriteJsonFile(FilePath, BotInfo);
 			}
 			catch (Exception ex)
 			{
@@ -82,8 +79,8 @@ namespace ChanDiscordBot.Config
 	public class BotConfigModel
 	{
 		public string Token = "";
-		public string ClientId = "";
-		public string BotId = "";
+		public ulong ClientId = 0;
+		public ulong BotId = 0;
 		public List<ulong> OwnerIds = new List<ulong>();
 		public List<ulong> CommandRoleIds = new List<ulong>();
 		public int UpdateSeconds = 30;
@@ -94,8 +91,8 @@ namespace ChanDiscordBot.Config
 	[Serializable]
 	public class ServerToSend
 	{
-		public long ServerId;
-		public List<long> ChannelIds;
+		public ulong ServerId;
+		public List<ulong> ChannelIds;
 		public List<string> Boards;
 	}
 

@@ -17,6 +17,11 @@ namespace ChanDiscordBot.Chan
 		public ChanThreadModel[] threads;
 	}
 
+	public class ChanThreadPostsModel
+	{
+		public List<ChanThreadModel> posts;
+	}
+
 	public class ChanThreadModel
 	{
 		public int bumplimit; //Bump limit met? 0 (no), 1 (yes)

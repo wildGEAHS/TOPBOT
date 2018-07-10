@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 
 namespace ChanDiscordBot.Helpers
 {
@@ -45,6 +47,21 @@ namespace ChanDiscordBot.Helpers
 			}
 			// Step 7
 			return d[n, m];
+		}
+
+		public static T ReadJsonFile<T>(string path) where T : class
+		{
+			if (!File.Exists(path))
+				return null;
+
+			return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+		}
+
+		public static void WriteJsonFile<T>(string path, T item)
+		{
+			Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+			File.WriteAllText(path, JsonConvert.SerializeObject(item, Formatting.Indented));
 		}
 	}
 }
