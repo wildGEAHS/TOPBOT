@@ -76,6 +76,6 @@ namespace ChanDiscordBot.Chan
 	[Serializable]
 	public class ChanDataStoreModel
 	{
-		public List<long> PostIdsPosted = new List<long>();
+		public List<ulong> PostIdsPosted = new List<ulong>();
 	}
 }

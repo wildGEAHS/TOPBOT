@@ -29,7 +29,7 @@ namespace ChanDiscordBot.Chan
 		public int custom_spoiler; //Custom spoilers? 1-99
 		public string ext; //File extension .jpg, .png, .gif, .pdf, .swf, .webm
 		public string filename; //Original filename
-		public long fsize; //File size 0-10485760
+		public ulong fsize; //File size 0-10485760
 		public int h; //Image height 1-10000
 		public int imagelimit; //Image limit met? 0 (no), 1 (yes)
 		public int images; //# images total 0-99999
@@ -37,12 +37,12 @@ namespace ChanDiscordBot.Chan
 		public ChanLastReplyModel[] last_replies;
 		public string md5; //File MD5 24 character, packed base64 MD5 hash
 		public string name; //Name
-		public long no; //Post number 1-9999999999999
+		public ulong no; //Post number 1-9999999999999
 		public string now; //Date and time MM/DD/YY(Day)HH:MM (:SS on some boards), EST/EDT timezone
 		public int omitted_images; //# image replies omitted 1-10000
 		public int omitted_posts; //# replies omitted 1-10000
 		public int replies; //# replies total 0-99999
-		public long resto; //Reply to 0 (is a thread OP), 1-9999999999999
+		public ulong resto; //Reply to 0 (is a thread OP), 1-9999999999999
 		public string semantic_url; //Thread URL slug
 		public string sub; //Subject
 		public long tim; //Renamed filename UNIX timestamp + milliseconds
@@ -60,11 +60,11 @@ namespace ChanDiscordBot.Chan
 		public string com; //Comment (includes escaped HTML)
 		public string ext; //File extension .jpg, .png, .gif, .pdf, .swf, .webm
 		public string filename; //Original filename
-		public long fsize; //File size 0-10485760
+		public ulong fsize; //File size 0-10485760
 		public int h; //Image height 1-10000
 		public string md5; //File MD5 24 character, packed base64 MD5 hash
 		public string name; //Name
-		public long no; //Post number 1-9999999999999
+		public ulong no; //Post number 1-9999999999999
 		public string now; //Date and time MM/DD/YY(Day)HH:MM (:SS on some boards), EST/EDT timezone
 		public int resto; //Reply to 0 (is a thread OP), 1-9999999999999
 		public long tim; //Renamed filename UNIX timestamp + milliseconds

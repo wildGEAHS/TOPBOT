@@ -101,5 +101,6 @@ namespace ChanDiscordBot.Config
 	{
 		public string BoardName = "";
 		public List<string> NamesToSearch = new List<string>();
+		public ulong MinPostNo = 0;
 	}
 }

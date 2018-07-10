@@ -50,7 +50,7 @@ namespace ChanDiscordBot.Chan
 			}
 		}
 
-		public static async Task<ChanThreadPostsModel> GetPosts(string board, long postno, DateTime modifiedSince)
+		public static async Task<ChanThreadPostsModel> GetPosts(string board, ulong postno, DateTime modifiedSince)
 		{
 			try
 			{
