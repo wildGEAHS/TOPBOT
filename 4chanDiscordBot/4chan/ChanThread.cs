@@ -150,24 +150,28 @@ namespace ChanDiscordBot.Chan
 										if (channel == null)
 											continue;
 										var eb = new EmbedBuilder();
-										eb.Title = $"{(!string.IsNullOrWhiteSpace(post.sub) ? $"{post.sub} - " : "")}{(!string.IsNullOrWhiteSpace(post.name) ? $"{post.name} - " : "")}No. {post.no}";
+										if(!string.IsNullOrWhiteSpace(post.sub))
+											eb.Title = post.sub;
+										//eb.Description = $"[No. {post.no}]({(post.resto == 0 ? $"https://boards.4chan.org/{b.BoardName}/thread/{post.no}" : $"https://boards.4chan.org/{b.BoardName}/thread/{post.resto}#p{post.no}")}){(string.IsNullOrWhiteSpace(post.filename) ? "" : $" File: [{post.filename}{post.ext}]({$"https://i.4cdn.org/{b.BoardName}/{post.tim}{post.ext}"})")} ({(float)post.fsize / 1024 / 1024:0.##}MiB, {post.w}x{post.h})";
+										eb.Description = $"{(!string.IsNullOrWhiteSpace(post.name) ? $"{post.name} - " : "")}[No. {post.no}]({(post.resto == 0 ? $"https://boards.4chan.org/{b.BoardName}/thread/{post.no}" : $"https://boards.4chan.org/{b.BoardName}/thread/{post.resto}#p{post.no}")}) - {post.TimeStamp.ToString("yyyy/MM/dd(ddd)HH:mm:ss zz")}";
 										//eb.Timestamp = new DateTimeOffset(post.TimeStamp);
+										if (!string.IsNullOrWhiteSpace(post.filename))
+										{
+											eb.AddField("File", $"[{post.filename}{post.ext}]({$"https://i.4cdn.org/{b.BoardName}/{post.tim}{post.ext}"}) ({(float)post.fsize / 1024 / 1024:0.##}MiB, {post.w}x{post.h})");
+											eb.ThumbnailUrl = $"https://i.4cdn.org/{b.BoardName}/{post.tim}{post.ext}";
+										}
 										if (!string.IsNullOrWhiteSpace(post.com))
 										{
 											post.com = post.com.Replace("<br>", "\n");
 											HtmlDocument htmlDoc = new HtmlDocument();
 											htmlDoc.LoadHtml(post.com);
 											var text = WebUtility.HtmlDecode(htmlDoc.DocumentNode.InnerText);
-											eb.Description = $"{(text.Length > 1021 ? $"{text.Substring(0, 1021)}..." : $"{text}")}";
+											eb.AddField("Comment", $"{(text.Length > 1021 ? $"{text.Substring(0, 1021)}..." : $"{text}")}");
+											//eb.Description = $"{(text.Length > 1021 ? $"{text.Substring(0, 1021)}..." : $"{text}")}";
 										}
-										if (!string.IsNullOrWhiteSpace(post.filename))
-										{
-											eb.AddField("Image", $"{post.filename}{post.ext} - {post.w}x{post.h} ({(float)post.fsize / 1024 / 1024:0.##}MiB)");
-											eb.ThumbnailUrl = $"https://i.4cdn.org/{b.BoardName}/{post.tim}{post.ext}";
-										}
-										eb.AddField("Link", $"{(post.resto == 0 ? $"https://boards.4chan.org/{b.BoardName}/thread/{post.no}" : $"https://boards.4chan.org/{b.BoardName}/thread/{post.resto}#p{post.no}")}");
-										eb.Footer = new EmbedFooterBuilder();
-										eb.Footer.Text = post.TimeStamp.ToString("yyyy/MM/dd(ddd)HH:mm:ss zz");
+										//eb.AddField("Link", $"{(post.resto == 0 ? $"https://boards.4chan.org/{b.BoardName}/thread/{post.no}" : $"https://boards.4chan.org/{b.BoardName}/thread/{post.resto}#p{post.no}")}");
+										//eb.Footer = new EmbedFooterBuilder();
+										//eb.Footer.Text = post.TimeStamp.ToString("yyyy/MM/dd(ddd)HH:mm:ss zz");
 										eb.Color = new Color(120, 153, 34);
 										await channel.SendMessageAsync(embed: eb.Build());
 										//rate limit
@@ -183,7 +187,7 @@ namespace ChanDiscordBot.Chan
 						//ChanDiscordBot.ChanData.DataStore.PostIdsPosted.Add(post.no);
 						//Im testing for now
 						j++;
-						if (j == 5)
+						if (j == 4)
 						{
 							break;
 						}
