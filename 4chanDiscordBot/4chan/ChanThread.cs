@@ -122,7 +122,7 @@ namespace ChanDiscordBot.Chan
 					{
 						thread = oldThread;
 					}
-					//If there were no old threads jsut add this as a new one
+					//If there were no old threads just add this as a new one
 					else
 					{
 						currentOps.Add(thread.no, thread);

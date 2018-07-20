@@ -1,0 +1,28 @@
+{
+  "Token": "",
+  "ClientId": 0,
+  "BotId": 0,
+  "OwnerIds": [],
+  "CommandRoleIds": [],
+  "UpdateSeconds": 30,
+  "BoardsToCheck": [
+    {
+      "BoardName": "m",
+      "NamesToSearch": [
+        "sgg"
+      ],
+      "MinPostNo": 16671160
+    }
+  ],
+  "ServersToSend": [
+    {
+      "ServerId": 0,
+      "ChannelIds": [
+        0
+      ],
+      "Boards": [
+        "m"
+      ]
+    }
+  ]
+}
