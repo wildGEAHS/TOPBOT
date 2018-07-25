@@ -79,7 +79,6 @@ namespace ChanDiscordBot.Config
 	public class BotConfigModel
 	{
 		public string Token = "";
-		public ulong ClientId = 0;
 		public ulong BotId = 0;
 		public List<ulong> OwnerIds = new List<ulong>();
 		public List<ulong> CommandRoleIds = new List<ulong>();
