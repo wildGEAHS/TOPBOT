@@ -3,6 +3,7 @@ using ChanDiscordBot.Chan;
 using ChanDiscordBot.Config;
 using ChanDiscordBot.Helpers;
 using Discord;
+using Discord.Net.Providers.WS4Net;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -48,7 +49,8 @@ namespace ChanDiscordBot
 				{
 					MessageCacheSize = 10,
 					ConnectionTimeout = int.MaxValue,
-					LogLevel = LogSeverity.Warning
+					LogLevel = LogSeverity.Warning,
+					WebSocketProvider = WS4NetProvider.Instance,
 				});
 				Client.Connected += OnConnected;
 				Client.Disconnected += OnDisconnected;
